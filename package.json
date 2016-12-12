@@ -1,0 +1,20 @@
+{
+  "name": "coderdojo-rotterdam-sf-2016-in-review",
+  "version": "1.0.0",
+  "description": "A neat overview of everything CoderDojo Rotterdam in 2016",
+  "main": "index.js",
+  "scripts": {
+    "test": "lol nope"
+  },
+  "keywords": [
+    "Coderdojo",
+    "rotterdam",
+    "in",
+    "review",
+    "2016",
+    "awesome",
+    "ninjas"
+  ],
+  "author": "Tiemen Waterreus",
+  "license": "MIT"
+}
