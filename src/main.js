@@ -26,25 +26,15 @@
   });
 
   var canvas_year = document.querySelector('#year');
-  var chart_year = new Chart(canvas_year, {
-    type: 'bar',
+  var chart_year  = new Chart(canvas_year, {
+    type: 'line',
     data: {
-      labels: ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Sep', 'Okt', 'Nov'],
+      labels: ['30 jan', '27 feb', '28 feb', '27 mrt', '28 mrt', '28 apr', '29 apr', '29 mei', '26 jun', '27 jul', '28 sept', '27 okt', '25 nov'],
       datasets: [{
+        fill: false,
+        borderColor: 'rgba(91, 135, 55, .5)',
         label: 'Bezoekers',
-        data: [12, 20, 20, 21, 30, 56, 23, 12, 34, 12],
-        backgroundColor: [
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-          'rgba(91, 135, 55, 0.2)',
-        ]
+        data: [12, 20, 20, 22, 17, 12, 21, 30, 56, 23, 12, 34, 12],
       }],
     },
 
