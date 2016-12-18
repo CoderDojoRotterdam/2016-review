@@ -13,12 +13,10 @@ html, body
   height: 100%
   width: 100%
 
+// setup header styles
 h1, h2, h3, h4, h5, h6
   font-family: 'Open Sans', sans-serif;
   margin: 0px
-
-.main
-  // transform: translateY(-000vh)
 
 // setup page background colors
 .green
@@ -75,9 +73,27 @@ section
     strong
       color: $accent-color
 
+footer
+  position: absolute
+  bottom: 0px
+  left: 0px
+
+
+  background-color: $accent-color
+  border-top: 1px solid darken($accent-color, 10%)
+  width: 100%
+  p
+    width: 100% !important
+    color: white
+    font-size: 12px
+    text-align: center
+    padding: 0px
+    margin: 0px
+    a
+      color: white
+
 
 /// some legacy stuff?
-
 .number.huge
   font-size: 6rem
   border: 5px solid $accent-color
@@ -102,6 +118,7 @@ canvas.chart
 
   &#year
     max-width: 800px
+
 @media (max-width: 960px)
   canvas.chart
     &#year
