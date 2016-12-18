@@ -16,5 +16,15 @@
     "ninjas"
   ],
   "author": "Tiemen Waterreus",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.2.0",
+    "gulp-sass": "^3.0.0"
+  },
+  "dependencies": {
+    "basscss": "^8.0.3",
+    "chart.js": "^2.4.0"
+  }
 }

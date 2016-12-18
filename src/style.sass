@@ -1,0 +1,122 @@
+@import 'node_modules/basscss/css/basscss'
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab');
+
+
+// setup some variables
+$accent-color: #5b8737
+
+// begin magic
+html, body
+  padding: 0px
+  margin: 0px
+  font-family: 'Roboto Slab', serif;
+  height: 100%
+  width: 100%
+
+h1, h2, h3, h4, h5, h6
+  font-family: 'Open Sans', sans-serif;
+  margin: 0px
+
+.main
+  // transform: translateY(-000vh)
+
+// setup page background colors
+.green
+  background-color: $accent-color
+
+// mediaquery to not show the cover image on mobile
+@media (min-width: 960px)
+  section
+    &.cover
+      background: url('cover-image.jpeg') no-repeat center center fixed
+      background-size: cover
+      h1, p
+        background-color: rgba($accent-color, .98)
+        padding: 40px
+        border-bottom: 5px solid rgba(0, 0, 0, .3)
+
+// structural stuff
+section
+  min-height: 100vh
+  width:  100vw
+  padding: 20px 0px
+  position: relative
+  border-bottom: 1px solid lighten($accent-color, 40%)
+
+  &.green
+    border-bottom: 0px
+
+  .content
+    margin: auto
+
+    .block
+      padding: 0px 40px
+  
+  // special override for the cover slide
+  &.cover
+
+    .content
+      h1
+        display: inline-block
+        font-size: 5rem
+        color: white
+        margin-bottom: 60px
+        text-shadow: 5px 5px rgba(0,0,0, .3)
+        border-bottom: 5px solid rgba(0, 0, 0, .3)
+      p
+        color: white
+        text-shadow: 0px 1px rgba(0,0,0, 0.7)
+
+  p
+    font-size: 20px
+    max-width: 650px
+    color: rgba(0, 0, 0, 0.7)
+    line-height: 2rem
+    strong
+      color: $accent-color
+
+
+/// some legacy stuff?
+
+.number.huge
+  font-size: 6rem
+  border: 5px solid $accent-color
+  border-radius: 10px
+  color: $accent-color
+  text-align: center
+  line-height: 1em
+  padding: 50px
+  margin: 0px
+
+  &.euro
+    min-width: 230px
+    padding: 25px
+
+canvas.chart
+  max-width: 300px
+  margin: auto
+
+  &#uniques
+    // background-color: green
+    max-width: 200px
+
+  &#year
+    max-width: 500px
+@media (max-width: 960px)
+  canvas.chart
+    &#year
+      max-width: 300px
+
+.wavey
+  span
+    display: inline-block
+    transform-origin: right bottom
+    font-size: 5em
+    animation: wavey 1s infinite
+
+// setup some animations
+@keyframes wavey
+  0%, 100%
+    transform: rotate(-20deg)
+  50%
+    transform: rotate(20deg)
