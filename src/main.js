@@ -63,4 +63,31 @@
     }
   });
 
+  // setup countup stuff
+  var options_dojos = {
+    useEasing : true, 
+    useGrouping : true, 
+    separator : ',', 
+    decimal : '.', 
+    prefix : '', 
+    suffix : '' 
+  };
+
+  var options_euros = {
+    useEasing : true, 
+    useGrouping : true, 
+    separator : ',', 
+    decimal : '.', 
+    prefix : '&euro; ', 
+    suffix : '' 
+  };
+
+  
+
+  var dojos = new CountUp('number_dojos', 0, 13, 0, 2.5, options_dojos);
+  dojos.start();
+
+  var euros = new CountUp('number_euros', 0, 174, 0, 2.5, options_euros);
+  euros.start();
+
 })(document);
