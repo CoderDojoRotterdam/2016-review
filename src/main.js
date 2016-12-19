@@ -34,7 +34,7 @@
         fill: false,
         borderColor: 'rgba(91, 135, 55, .5)',
         label: 'Bezoekers',
-        data: [12, 20, 20, 22, 17, 12, 21, 30, 56, 23, 12, 34, 12],
+        data: [16, 18, 15, 19, 17, 19, 13, 18, 12, 10, 14, 20, 19],
       }],
     },
 
@@ -49,6 +49,11 @@
           }
         }],
         yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 2,
+            max: 40
+          },
           display: false,
           gridLines: {
             display: false
