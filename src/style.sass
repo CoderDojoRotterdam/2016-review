@@ -19,25 +19,30 @@ h1, h2, h3, h4, h5, h6
   margin: 0px
 
 // setup page background colors
-.green
+.bg-green
   background-color: $accent-color
 
 // mediaquery to not show the cover image on mobile
 @media (min-width: 960px)
   section
+    padding: 200px 0px
     &.cover
       background: url('cover-image.jpeg') no-repeat center center fixed
       background-size: cover
+      padding: 0px
       h1, p
         background-color: rgba($accent-color, .98)
         padding: 40px
         border-bottom: 5px solid rgba(0, 0, 0, .3)
 
+@media (max-width: 960px)
+  section
+    padding: 100px 0px
+
 // structural stuff
 section
-  min-height: 100vh
+  box-sizing: border-box
   width:  100%
-  padding: 20px 0px
   position: relative
   border-bottom: 1px solid lighten($accent-color, 40%)
 
@@ -52,7 +57,7 @@ section
   
   // special override for the cover slide
   &.cover
-
+    height: 100vh
     .content
       h1
         display: inline-block
@@ -77,20 +82,20 @@ footer
   position: absolute
   bottom: 0px
   left: 0px
+  padding: 15px 0px
 
-
-  background-color: $accent-color
-  border-top: 1px solid darken($accent-color, 10%)
+  border-top: 1px solid lighten(#000000, 90%)
   width: 100%
   p
-    width: 100% !important
-    color: white
     font-size: 12px
     text-align: center
     padding: 0px
     margin: 0px
+    padding-right: 10px
+    color: lighten(#000000, 50%)
     a
-      color: white
+      color: $accent-color
+    
 
 
 /// some legacy stuff?
@@ -113,7 +118,6 @@ canvas.chart
   margin: auto
 
   &#uniques
-    // background-color: green
     max-width: 200px
 
   &#year
@@ -125,13 +129,14 @@ canvas.chart
       max-width: 300px
 
 .wavey
+  margin-bottom: 100px
   span
+    font-size: 5em    
     display: inline-block
     transform-origin: right bottom
-    font-size: 5em
     animation: wavey 1s infinite
 
-// setup some animations
+// wavey animation
 @keyframes wavey
   0%, 100%
     transform: rotate(-20deg)
