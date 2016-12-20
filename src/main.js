@@ -95,37 +95,37 @@ t=function(){return c.document?c.document.documentElement.compareDocumentPositio
 
   // make sure we can call these functions only once
   var onceInitializeUniquesChart = once(initializeUniquesChart);
-  var onceInitializeYearChart = once(initializeYearChart);
-
+  var onceInitializeYearChart    = once(initializeYearChart);
   var onceCountNumberOfDojos     = once(countNumberOfDojos);
   var onceCountNumberOfEuros     = once(countNumberOfEuros);
+
+  // grab reference to DOM elements
+  var numberOfDojos = document.querySelector('#number_dojos');
+  var numberOfEuros = document.querySelector('#number_euros');
+  var uniquesChart = document.querySelector('#cvs_uniques');
+  var yearChart = document.querySelector('#year');
 
   // everytime we scroll, check if one of the elements
   // are in the viewport.
   document.addEventListener('scroll', function() {
 
     // is the number of dojos in the viewport yet?
-    var numberOfDojos = document.querySelector('#number_dojos');
     if(inViewport(numberOfDojos, { offset: -300 })){
       onceCountNumberOfDojos();
     }
 
     // is the amount of donations in the viewport yet?
-    var numberOfEuros = document.querySelector('#number_euros');
     if(inViewport(numberOfEuros, { offset: -300 })) {
       onceCountNumberOfEuros();
     }
 
     // if the uniquesChart enters the viewport
-    var uniquesChart = document.querySelector('#uniques');
     if(inViewport(uniquesChart, { offset: -300 })) {
-      console.log('je moer')
       onceInitializeUniquesChart();
     }
     
     // if the yearchart enters the viewport
-    var yearChart = document.querySelector('#year');
-    if(inViewport(yearChart, { offset: -300 })) {
+    if(inViewport(yearChart, { offset: -200 })) {
       onceInitializeYearChart();
     }
 
