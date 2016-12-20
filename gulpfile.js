@@ -8,19 +8,19 @@ gulp.task('default', ['pug', 'sass', 'javascript', 'image', 'serve', 'watch']);
 gulp.task('pug', () => {
   return gulp.src('src/index.pug')
     .pipe(pug())
-    .pipe(gulp.dest('dest'));
+    .pipe(gulp.dest('docs'));
 });
 
 gulp.task('sass', () => {
   return gulp.src('src/style.sass')
     .pipe(sass())
-    .pipe(gulp.dest('dest'))
+    .pipe(gulp.dest('docs'))
     .pipe(sync.stream());
 });
 
 gulp.task('javascript', () => {
   return gulp.src('src/main.js')
-    .pipe(gulp.dest('dest'));
+    .pipe(gulp.dest('docs'));
 });
 
 gulp.task('watch', () => {
@@ -31,20 +31,20 @@ gulp.task('watch', () => {
 
 gulp.task('image', () => {
   gulp.src('src/**/*.png')
-    .pipe(gulp.dest('dest'));
+    .pipe(gulp.dest('docs'));
   gulp.src('src/**/*.jpeg')
-    .pipe(gulp.dest('dest'));
+    .pipe(gulp.dest('docs'));
 });
 
 // start a dev server with hotreloading
 gulp.task('serve', () => {
   sync.init({
     server: {
-      baseDir: 'dest'
+      baseDir: 'docs'
     },
     browser: 'google chrome'
   });
 
-  gulp.watch('dest/index.html').on('change', sync.reload);
+  gulp.watch('docs/index.html').on('change', sync.reload);
 
 });
