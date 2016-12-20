@@ -6,74 +6,76 @@ a.target);return 0<f.call(a,b.isWatched).length}var e=new MutationObserver(funct
 t=function(){return c.document?c.document.documentElement.compareDocumentPosition?function(b,a){return!!(b.compareDocumentPosition(a)&16)}:c.document.documentElement.contains?function(b,a){return b!==a&&(b.contains?b.contains(a):!1)}:function(b,a){for(;a=a.parentNode;)if(a===b)return!0;return!1}:!0}}).call(this,"undefined"!==typeof global?global:"undefined"!==typeof self?self:"undefined"!==typeof window?window:{})},{}]},{},[1])(1)});
 
 (function(document) {
-  
-  // setup first chart
-  var canvas = document.querySelector('#uniques');
-  var chart  = new Chart(canvas, {
-    type: 'doughnut',
-    data: {
-        labels: ['Uniek', 'Terugkomer'],
-        datasets: [{
-            data: [170, 40],
-            backgroundColor: [
-                'rgba(91, 135, 55, 0.2)',
-                'rgba(91, 135, 55, 0.8)'
-            ],
-            borderColor: [
-                '#ffffff',
-                '#ffffff'
-            ],
-            borderWidth: 5
-        }]
-    },
-    options: {
-      legend: {
-        display: false
-      }
-    }
-  });
 
-  var canvas_year = document.querySelector('#year');
-  var chart_year  = new Chart(canvas_year, {
-    type: 'line',
-    data: {
-      labels: ['30 jan', '27 feb', '28 feb', '27 mrt', '28 mrt', '28 apr', '29 apr', '29 mei', '26 jun', '27 jul', '28 sept', '27 okt', '25 nov'],
-      datasets: [{
-        fill: false,
-        borderColor: 'rgba(91, 135, 55, .5)',
-        label: 'Bezoekers',
-        data: [16, 18, 15, 19, 17, 19, 13, 18, 12, 10, 14, 20, 19],
-      }],
-    },
-
-    options: {
-      legend: { 
-        display: false
+  var initializeUniquesChart = function() {
+    // setup first chart
+    var canvasUniques = document.querySelector('#uniques');
+    new Chart(canvasUniques, {
+      type: 'doughnut',
+      data: {
+          labels: ['Uniek', 'Terugkomer'],
+          datasets: [{
+              data: [170, 40],
+              backgroundColor: [
+                  'rgba(91, 135, 55, 0.2)',
+                  'rgba(91, 135, 55, 0.8)'
+              ],
+              borderColor: [
+                  '#ffffff',
+                  '#ffffff'
+              ],
+              borderWidth: 5
+          }]
       },
-      scales: {
-        xAxes: [{
-          gridLines: {
-            display: false
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            stepSize: 2,
-            max: 40
-          },
-          display: false,
-          gridLines: {
-            display: false
-          }
-        }]
+      options: {
+        legend: {
+          display: false
+        }
       }
-    }
-  });
+    });
+  };
+   
+  var initializeYearChart = function() {
+    var canvasYear = document.querySelector('#year');
+    new Chart(canvasYear, {
+      type: 'line',
+      data: {
+        labels: ['30 jan', '27 feb', '28 feb', '27 mrt', '28 mrt', '28 apr', '29 apr', '29 mei', '26 jun', '27 jul', '28 sept', '27 okt', '25 nov'],
+        datasets: [{
+          fill: false,
+          borderColor: 'rgba(91, 135, 55, .5)',
+          label: 'Bezoekers',
+          data: [16, 18, 15, 19, 17, 19, 13, 18, 12, 10, 14, 20, 19],
+        }],
+      },
 
+      options: {
+        legend: { 
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 2,
+              max: 40
+            },
+            display: false,
+            gridLines: {
+              display: false
+            }
+          }]
+        }
+      }
+    });
+  }
 
-
-
+  // a passed in function will only be invoked once
   var once = function(fn) {
     var done = false;
     return function() {
@@ -82,48 +84,51 @@ t=function(){return c.document?c.document.documentElement.compareDocumentPositio
     };
   };
 
+  // function to animate the amount of dojos
   var countNumberOfDojos = function() {
-    var options_dojos = {
-      useEasing : true, 
-      useGrouping : true, 
-      separator : ',', 
-      decimal : '.', 
-      prefix : '', 
-      suffix : '' 
-    };
-    new CountUp('number_dojos', 0, 13, 0, 2.5, options_dojos).start();
+    new CountUp('number_dojos', 0, 13, 0, 2.5).start();
   };
 
   var countNumberOfEuros = function() {
-    var options_euros = {
-      useEasing : true, 
-      useGrouping : true, 
-      separator : ',', 
-      decimal : '.', 
-      prefix : '&euro; ', 
-      suffix : '' 
-    };
-    new CountUp('number_euros', 0, 174, 0, 2.5, options_euros).start();
+    new CountUp('number_euros', 0, 174, 0, 2.5, { prefix: '&euro; ' }).start();
   };
 
-  // PEPTALK
-  var onceCountNumberOfDojos = once(countNumberOfDojos);
-  var onceCountNumberOfEuros = once(countNumberOfEuros);
+  // make sure we can call these functions only once
+  var onceInitializeUniquesChart = once(initializeUniquesChart);
+  var onceInitializeYearChart = once(initializeYearChart);
+
+  var onceCountNumberOfDojos     = once(countNumberOfDojos);
+  var onceCountNumberOfEuros     = once(countNumberOfEuros);
+
+  // everytime we scroll, check if one of the elements
+  // are in the viewport.
   document.addEventListener('scroll', function() {
 
     // is the number of dojos in the viewport yet?
     var numberOfDojos = document.querySelector('#number_dojos');
-    if(inViewport(numberOfDojos, { offset: -400} )) {
+    if(inViewport(numberOfDojos, { offset: -300 })){
       onceCountNumberOfDojos();
     }
 
     // is the amount of donations in the viewport yet?
     var numberOfEuros = document.querySelector('#number_euros');
-    if(inViewport(numberOfEuros, { offset: -400} )) {
+    if(inViewport(numberOfEuros, { offset: -300 })) {
       onceCountNumberOfEuros();
     }
 
-    // inViewport(document.querySelectorAll('section')[0])
+    // if the uniquesChart enters the viewport
+    var uniquesChart = document.querySelector('#uniques');
+    if(inViewport(uniquesChart, { offset: -300 })) {
+      console.log('je moer')
+      onceInitializeUniquesChart();
+    }
+    
+    // if the yearchart enters the viewport
+    var yearChart = document.querySelector('#year');
+    if(inViewport(yearChart, { offset: -300 })) {
+      onceInitializeYearChart();
+    }
+
   });
 
 })(document);
